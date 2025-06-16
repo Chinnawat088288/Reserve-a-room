@@ -32,11 +32,17 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // ควบคุมรีเลย์ด้วยข้อความ "ON" หรือ "OFF"
   if (message.equalsIgnoreCase("ON")) {
-    digitalWrite(RELAY_PIN, HIGH);
-    Serial.println("Relay ON");
-  } else if (message.equalsIgnoreCase("OFF")) {
     digitalWrite(RELAY_PIN, LOW);
     Serial.println("Relay OFF");
+  } else if (message.equalsIgnoreCase("Pin")) {
+    digitalWrite(RELAY_PIN, LOW);
+    Serial.println("Relay OFF");
+    delay(10000);
+    digitalWrite(RELAY_PIN, HIGH);
+    Serial.println("Relay ON");
+   } else if (message.equalsIgnoreCase("OFF")) {
+    digitalWrite(RELAY_PIN, HIGH);
+    Serial.println("Relay ON");
   } else {
     Serial.println("Unknown command");
   }
