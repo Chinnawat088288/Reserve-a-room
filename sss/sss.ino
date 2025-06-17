@@ -10,7 +10,7 @@ const char* password = "UJJthG^2";
 
 const char* mqtt_server = "10.1.65.30";
 const int mqtt_port = 1883;
-const char* mqtt_topic = "floor15/access-control/04";
+const char* mqtt_topic = "floor15/access-control/01";
 
 
 #define RELAY_PIN 23
@@ -89,6 +89,10 @@ void reconnect() {
       client.subscribe(mqtt_topic);
       Serial.print("Subscribed to topic: ");
       Serial.println(mqtt_topic);
+      
+      // Publish message when connected
+      client.publish(mqtt_topic, "MQTT Connected");
+      Serial.println("Published: MQTT Connected");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
